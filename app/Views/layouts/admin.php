@@ -112,7 +112,7 @@
                         <li class="nav-header">MASTER DATA</li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?= base_url('/admin/categories') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-tags"></i>
                                 <p>
                                     Kategori
@@ -121,13 +121,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<?= base_url('/admin/categories') ?>" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lihat Semua</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<?= base_url('/admin/categories/create') ?>" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah Baru</p>
                                     </a>
@@ -241,7 +241,7 @@
                         <li class="nav-header">PENGURUSAN PENGGUNA</li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?= base_url('/admin/users') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Pengguna
@@ -250,13 +250,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<?= base_url('/admin/users') ?>" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lihat Semua</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<?= base_url('/admin/users/create') ?>" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah Pengguna</p>
                                     </a>
