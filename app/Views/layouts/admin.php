@@ -96,7 +96,7 @@
             padding: 1rem 0;
         }
 
-        .navbar-nav-item .nav-link {
+        .navbar-nav .nav-link {
             color: rgba(255, 255, 255, 0.8);
             padding: 0.75rem 1.5rem;
             border-radius: var(--border-radius);
@@ -108,17 +108,17 @@
             gap: 0.75rem;
         }
 
-        .navbar-nav-item .nav-link:hover {
+        .navbar-nav .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
             color: white;
         }
 
-        .navbar-nav-item .nav-link.active {
+        .navbar-nav .nav-link.active {
             background-color: var(--primary-color);
             color: white;
         }
 
-        .navbar-nav-item .nav-link.dropdown-toggle::after {
+        .navbar-nav .nav-link.dropdown-toggle::after {
             margin-left: auto;
             border: none;
             width: 1rem;
@@ -129,13 +129,8 @@
             opacity: 0.7;
         }
 
-        .navbar-nav-item.menu-open .nav-link {
-            background-color: rgba(255, 255, 255, 0.08);
-            font-weight: 600;
-        }
-
-        /* Navbar Section Headers */
-        .navbar-nav-section .navbar-nav-header {
+        /* Nav Section Headers */
+        .nav-header {
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.75rem;
             font-weight: 600;
@@ -511,9 +506,9 @@
 
         <!-- Main Sidebar Container -->
         <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
-            <!-- Brand -->
+            <!-- Brand Logo -->
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
@@ -523,30 +518,29 @@
                 </h1>
             </div>
 
-            <!-- User Info -->
-            <div class="collapse navbar-collapse" id="sidebar-menu">
+            <!-- Sidebar -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
                 <div class="navbar-nav pt-lg-3">
+                    <!-- User Info -->
                     <div class="navbar-nav-header">
-                        <div class="navbar-user">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="avatar avatar-sm" style="background-image: url(https://preview.tabler.io/static/avatars/000m.jpg)"></span>
-                                </div>
-                                <div class="col">
-                                    <div class="font-weight-medium"><?= session()->get('name') ?? 'Administrator' ?></div>
-                                    <div class="text-muted text-uppercase font-size-xs">
+                        <div class="navbar-user d-none d-md-flex">
+                            <a href="#" class="navbar-user-link">
+                                <span class="avatar avatar-sm" style="background-image: url(https://preview.tabler.io/static/avatars/000m.jpg)"></span>
+                                <div class="navbar-user-info">
+                                    <div class="navbar-user-name"><?= session()->get('name') ?? 'Administrator' ?></div>
+                                    <div class="navbar-user-role text-muted">
                                         <i class="ti ti-crown me-1"></i>
                                         <?= ucfirst(session()->get('role') ?? 'admin') ?>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Navigation Menu -->
-                    <ul class="navbar-nav pt-lg-3">
+                    <!-- Navigation -->
+                    <ul class="navbar-nav flex-column">
                         <!-- Dashboard -->
-                        <li class="navbar-nav-item">
+                        <li class="nav-item">
                             <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= isActive('dashboard') ? 'active' : '' ?>">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <i class="ti ti-home"></i>
@@ -558,11 +552,9 @@
                         </li>
 
                         <!-- Master Data -->
-                        <li class="navbar-nav-section">
-                            <div class="navbar-nav-header">MASTER DATA</div>
-                        </li>
+                        <li class="nav-header">MASTER DATA</li>
 
-                        <li class="navbar-nav-item <?= isMenuOpen('admin/categories') ? 'menu-open' : '' ?>">
+                        <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <i class="ti ti-tag"></i>
@@ -585,7 +577,7 @@
                             </div>
                         </li>
 
-                        <li class="navbar-nav-item">
+                        <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <i class="ti ti-package"></i>
@@ -606,11 +598,9 @@
                         </li>
 
                         <!-- Transaction -->
-                        <li class="navbar-nav-section">
-                            <div class="navbar-nav-header">TRANSACTION</div>
-                        </li>
+                        <li class="nav-header">TRANSACTION</li>
 
-                        <li class="navbar-nav-item">
+                        <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <i class="ti ti-transfer"></i>
@@ -631,11 +621,9 @@
                         </li>
 
                         <!-- Reports -->
-                        <li class="navbar-nav-section">
-                            <div class="navbar-nav-header">LAPORAN</div>
-                        </li>
+                        <li class="nav-header">LAPORAN</li>
 
-                        <li class="navbar-nav-item">
+                        <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <i class="ti ti-chart-bar"></i>
@@ -656,9 +644,7 @@
                         </li>
 
                         <!-- User Management -->
-                        <li class="navbar-nav-section">
-                            <div class="navbar-nav-header">PENGURUSAN PENGGUNA</div>
-                        </li>
+                        <li class="nav-header">PENGURUSAN PENGGUNA</li>
 
                         <li class="navbar-nav-item <?= isMenuOpen('admin/users') ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">

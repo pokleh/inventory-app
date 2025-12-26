@@ -243,9 +243,7 @@
                         </li>
 
                         <!-- Products -->
-                        <li class="navbar-nav-section">
-                            <div class="navbar-nav-header">PRODUK</div>
-                        </li>
+                        <li class="nav-header">PRODUK</li>
 
                         <li class="navbar-nav-item">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
