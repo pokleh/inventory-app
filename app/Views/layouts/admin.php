@@ -34,6 +34,10 @@
             }
             return '';
         }
+
+        function isMenuOpen($patterns) {
+            return isActive($patterns) ? 'menu-open' : '';
+        }
         ?>
         :root {
             --primary-color: #4f46e5;
@@ -474,8 +478,8 @@
                         <!-- Master Data -->
                         <li class="nav-header">MASTER DATA</li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url('/admin/categories') ?>" class="nav-link">
+                        <li class="nav-item <?= isMenuOpen('admin/categories') ?>">
+                            <a href="<?= base_url('/admin/categories') ?>" class="nav-link <?= isActive('admin/categories') ?>">
                                 <i class="nav-icon fas fa-tags"></i>
                                 <p>
                                     Kategori
@@ -561,8 +565,8 @@
                         <!-- User Management -->
                         <li class="nav-header">PENGURUSAN PENGGUNA</li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url('/admin/users') ?>" class="nav-link">
+                        <li class="nav-item <?= isMenuOpen('admin/users') ?>">
+                            <a href="<?= base_url('/admin/users') ?>" class="nav-link <?= isActive('admin/users') ?>">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Pengguna

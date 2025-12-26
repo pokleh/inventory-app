@@ -32,6 +32,10 @@
             }
             return '';
         }
+
+        function isMenuOpen($patterns) {
+            return isActive($patterns) ? 'menu-open' : '';
+        }
         ?>
         :root {
             --user-primary: #17a2b8;
