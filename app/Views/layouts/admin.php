@@ -8,11 +8,9 @@
     <!-- Google Fonts: Modern Font Stack -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AdminLTE -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tabler CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler.min.css">
     <!-- Clean Modern CSS -->
     <style>
         <?php
@@ -40,27 +38,31 @@
         }
         ?>
         :root {
-            --primary-color: #4f46e5;
-            --primary-light: #6366f1;
-            --secondary-color: #64748b;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
-            --info-color: #06b6d4;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-400: #94a3b8;
-            --gray-500: #64748b;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1e293b;
-            --gray-900: #0f172a;
+            /* Tabler-inspired color palette */
+            --primary-color: #206bc4;    /* Tabler blue */
+            --primary-light: #4299e1;    /* Light blue */
+            --secondary-color: #6c757d;  /* Gray */
+            --success-color: #2fb344;    /* Green */
+            --warning-color: #f59e0b;    /* Amber */
+            --danger-color: #d63939;     /* Red */
+            --info-color: #0d6efd;       /* Blue */
+            --light: #f8f9fa;
+            --dark: #212529;
+            --white: #ffffff;
+            --gray-50: #f8f9fa;
+            --gray-100: #e9ecef;
+            --gray-200: #dee2e6;
+            --gray-300: #ced4da;
+            --gray-400: #adb5bd;
+            --gray-500: #6c757d;
+            --gray-600: #495057;
+            --gray-700: #343a40;
+            --gray-800: #212529;
+            --gray-900: #000000;
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --border-radius: 8px;
+            --border-radius: 4px;        /* Tabler uses 4px border radius */
             --transition: all 0.2s ease;
         }
 
@@ -74,62 +76,72 @@
             color: var(--gray-700);
         }
 
-        /* Clean Sidebar */
+        /* Tabler-inspired Sidebar Styling */
         .main-sidebar {
             background-color: var(--gray-800);
-            box-shadow: var(--shadow-md);
+            border-right: 1px solid var(--gray-700);
         }
 
         .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link {
-            border-radius: 6px;
-            margin: 2px 8px;
+            border-radius: var(--border-radius);
+            margin: 0.125rem 0.5rem;
             transition: var(--transition);
-            border-left: 3px solid transparent;
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
         }
 
         .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
             background-color: var(--primary-color);
             color: white;
-            border-left-color: white;
         }
 
         .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
-            border-left-color: var(--primary-light);
+            color: white;
+        }
+
+        /* Menu Header Styling */
+        .nav-header {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 1rem 1rem 0.5rem;
+            margin-top: 1rem;
         }
 
         /* Treeview Child Menu Styling */
-        .sidebar-dark-primary .nav-treeview>.nav-item>.nav-link {
-            padding-left: 25px;
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.8);
+        .nav-treeview {
+            background-color: rgba(0, 0, 0, 0.1);
+            margin: 0.25rem 0.5rem;
+            border-radius: var(--border-radius);
+            padding: 0.25rem 0;
         }
 
-        .sidebar-dark-primary .nav-treeview>.nav-item>.nav-link.active {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
-            border-left: 3px solid var(--primary-light);
+        .nav-treeview>.nav-item>.nav-link {
+            padding-left: 2.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
         }
 
-        .sidebar-dark-primary .nav-treeview>.nav-item>.nav-link:hover {
+        .nav-treeview>.nav-item>.nav-link.active {
             background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-treeview>.nav-item>.nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
             color: white;
         }
 
         /* Parent menu styling when expanded */
-        .sidebar-dark-primary .nav-sidebar>.nav-item.menu-open>.nav-link {
+        .nav-sidebar>.nav-item.menu-open>.nav-link {
             background-color: rgba(255, 255, 255, 0.08);
-            border-left-color: var(--primary-light);
             font-weight: 600;
-        }
-
-        /* Better spacing for treeview */
-        .nav-treeview {
-            padding-left: 0;
-        }
-
-        .nav-treeview .nav-item {
-            margin-left: 0;
         }
 
         .brand-link {
@@ -433,10 +445,10 @@
         }
     </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+<body>
+    <div class="layout-fluid">
 
-        <!-- Navbar -->
+        <!-- Sidebar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
@@ -475,32 +487,41 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="<?= base_url('/dashboard') ?>" class="brand-link">
-                <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Inventory App</span>
-            </a>
+        <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+            <!-- Brand -->
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                    <a href="<?= base_url('/dashboard') ?>">
+                        <img src="https://preview.tabler.io/static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                    </a>
+                </h1>
+            </div>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <!-- User Info -->
+            <div class="collapse navbar-collapse" id="sidebar-menu">
+                <div class="navbar-nav pt-lg-3">
+                    <div class="navbar-nav-header">
+                        <div class="navbar-user">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="avatar avatar-sm" style="background-image: url(https://preview.tabler.io/static/avatars/000m.jpg)"></span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium"><?= session()->get('name') ?? 'Administrator' ?></div>
+                                    <div class="text-muted text-uppercase font-size-xs">
+                                        <i class="ti ti-crown me-1"></i>
+                                        <?= ucfirst(session()->get('role') ?? 'admin') ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="info">
-                        <a href="#" class="d-block"><?= session()->get('name') ?? 'Administrator' ?></a>
-                        <small class="text-muted">
-                            <i class="fas fa-crown mr-1"></i>
-                            <?= ucfirst(session()->get('role') ?? 'admin') ?>
-                        </small>
-                    </div>
-                </div>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Navigation Menu -->
+                    <ul class="navbar-nav flex-column">
                         <!-- Dashboard -->
                         <li class="nav-item">
                             <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= isActive('dashboard') ?>">
@@ -623,58 +644,69 @@
                             </ul>
                         </li>
                     </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
+                </div>
             </div>
-            <!-- /.sidebar -->
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0"><?= $page_title ?? 'Dashboard' ?></h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
-                                <li class="breadcrumb-item active"><?= $page_title ?? 'Dashboard' ?></li>
-                            </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+        <!-- Page Content -->
+        <div class="page-wrapper">
+            <!-- Page header -->
+            <div class="page-header d-print-none">
+                <div class="container-xl">
+                    <div class="row g-2 align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">
+                                <?= $page_title ?? 'Dashboard' ?>
+                            </h2>
+                            <div class="text-muted mt-1">
+                                Welcome back, <?= session()->get('name') ?? 'Administrator' ?>!
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- /.content-header -->
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
+            <!-- Page body -->
+            <div class="page-body">
+                <div class="container-xl">
                     <?= $this->renderSection('content') ?>
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
+                </div>
+            </div>
         </div>
-        <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
-
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2025 <a href="#">Inventory App</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0.0
+        <!-- Footer -->
+        <footer class="footer footer-transparent d-print-none">
+            <div class="container-xl">
+                <div class="row text-center align-items-center flex-row-reverse">
+                    <div class="col-lg-auto ms-lg-auto">
+                        <ul class="list-inline list-inline-dots mb-0">
+                            <li class="list-inline-item">
+                                <a href="#" class="link-secondary">Documentation</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="link-secondary">License</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="link-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                        <ul class="list-inline list-inline-dots mb-0">
+                            <li class="list-inline-item">
+                                Copyright &copy; 2025
+                                <a href="#" class="link-secondary">Inventory App</a>.
+                                All rights reserved.
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="link-secondary" tabindex="-1">v1.0.0</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </footer>
     </div>
-    <!-- ./wrapper -->
 
     <!-- Modern Confirmation Modal -->
     <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">
@@ -713,8 +745,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <!-- Tabler JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/js/tabler.min.js"></script>
 
     <script>
         $(document).ready(function() {
