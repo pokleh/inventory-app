@@ -4,18 +4,27 @@
 
 <!-- Error Messages -->
 <?php if(isset($errors) && !empty($errors)): ?>
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h5><i class="icon fas fa-ban"></i> Error!</h5>
-        <ul class="mb-0">
-            <?php foreach($errors as $error): ?>
-                <li><?= esc($error) ?></li>
-            <?php endforeach; ?>
-        </ul>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <div class="d-flex">
+            <div>
+                <i class="ti ti-alert-circle"></i>
+            </div>
+            <div class="ms-2">
+                <h4 class="alert-title">Error!</h4>
+                <div class="text-muted">
+                    <ul class="mb-0">
+                        <?php foreach($errors as $error): ?>
+                            <li><?= esc($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
     </div>
 <?php endif; ?>
 
-<div class="card card-warning">
+<div class="card">
     <div class="card-header">
         <h3 class="card-title">Edit Pengguna: <?= esc($user['name']) ?></h3>
     </div>
@@ -146,10 +155,10 @@
 
         <div class="card-footer">
             <a href="<?= base_url('/admin/users') ?>" class="btn btn-secondary">
-                <i class="fas fa-arrow-left mr-2"></i>Kembali
+                <i class="ti ti-arrow-left me-2"></i>Kembali
             </a>
             <button type="submit" class="btn btn-warning">
-                <i class="fas fa-save mr-2"></i>Kemaskini
+                <i class="ti ti-device-floppy me-2"></i>Kemaskini
             </button>
         </div>
     </form>

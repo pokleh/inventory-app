@@ -4,26 +4,40 @@
 
 <!-- Success/Error Messages -->
 <?php if(session()->getFlashdata('success')): ?>
-    <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <i class="icon fas fa-check"></i> <?= session()->getFlashdata('success') ?>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <div class="d-flex">
+            <div>
+                <i class="ti ti-check-circle"></i>
+            </div>
+            <div class="ms-2">
+                <h4 class="alert-title">Success!</h4>
+                <div class="text-muted"><?= session()->getFlashdata('success') ?></div>
+            </div>
+        </div>
+        <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
     </div>
 <?php endif; ?>
 
 <?php if(session()->getFlashdata('error')): ?>
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <i class="icon fas fa-ban"></i> <?= session()->getFlashdata('error') ?>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <div class="d-flex">
+            <div>
+                <i class="ti ti-alert-circle"></i>
+            </div>
+            <div class="ms-2">
+                <h4 class="alert-title">Error!</h4>
+                <div class="text-muted"><?= session()->getFlashdata('error') ?></div>
+            </div>
+        </div>
+        <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
     </div>
 <?php endif; ?>
 
 <!-- Action Buttons -->
-<div class="row mb-3">
-    <div class="col-12">
-        <a href="<?= base_url('/admin/categories/create') ?>" class="btn btn-primary">
-            <i class="fas fa-plus mr-2"></i>Tambah Kategori Baru
-        </a>
-    </div>
+<div class="mb-3">
+    <a href="<?= base_url('/admin/categories/create') ?>" class="btn btn-primary">
+        <i class="ti ti-plus me-2"></i>Tambah Kategori Baru
+    </a>
 </div>
 
 <!-- Categories Table -->
@@ -33,7 +47,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="table table-vcenter card-table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -81,23 +95,23 @@
                                 <td>
                                     <div class="btn-group">
                                         <a href="<?= base_url('/admin/categories/' . $category['id']) ?>" class="btn btn-sm btn-info" title="Lihat">
-                                            <i class="fas fa-eye"></i>
+                                            <i class="ti ti-eye"></i>
                                         </a>
                                         <a href="<?= base_url('/admin/categories/' . $category['id'] . '/edit') ?>" class="btn btn-sm btn-warning" title="Edit">
-                                            <i class="fas fa-edit"></i>
+                                            <i class="ti ti-edit"></i>
                                         </a>
                                         <button type="button" class="btn btn-sm btn-<?= $category['is_active'] ? 'secondary' : 'success' ?> toggle-status"
                                                 data-id="<?= $category['id'] ?>"
                                                 data-status="<?= $category['is_active'] ?>"
                                                 title="<?= $category['is_active'] ? 'Nonaktifkan' : 'Aktifkan' ?>">
-                                            <i class="fas fa-<?= $category['is_active'] ? 'ban' : 'check' ?>"></i>
+                                            <i class="ti ti-<?= $category['is_active'] ? 'ban' : 'check' ?>"></i>
                                         </button>
                                         <button type="button" class="btn btn-sm btn-danger delete-category"
                                                 data-id="<?= $category['id'] ?>"
                                                 data-name="<?= esc($category['name']) ?>"
                                                 data-product-count="<?= $productCount ?>"
                                                 title="Padam">
-                                            <i class="fas fa-trash"></i>
+                                            <i class="ti ti-trash"></i>
                                         </button>
                                     </div>
                                 </td>
@@ -128,7 +142,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <button type="button" class="btn btn-danger" id="confirmDelete">Padam</button>
             </div>
         </div>

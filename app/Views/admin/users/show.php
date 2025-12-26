@@ -2,15 +2,15 @@
 
 <?php $this->section('content') ?>
 
-<div class="card card-info">
+<div class="card">
     <div class="card-header">
         <h3 class="card-title">Maklumat Pengguna: <?= esc($user['name']) ?></h3>
-        <div class="card-tools">
+        <div class="card-actions">
             <a href="<?= base_url('/admin/users/' . $user['id'] . '/edit') ?>" class="btn btn-warning btn-sm">
-                <i class="fas fa-edit mr-1"></i>Edit
+                <i class="ti ti-edit me-1"></i>Edit
             </a>
             <a href="<?= base_url('/admin/users') ?>" class="btn btn-secondary btn-sm">
-                <i class="fas fa-arrow-left mr-1"></i>Kembali
+                <i class="ti ti-arrow-left me-1"></i>Kembali
             </a>
         </div>
     </div>
@@ -87,7 +87,7 @@
                          style="width: 120px; height: 120px; object-fit: cover;">
                     <h5 class="mt-3"><?= esc($user['name']) ?></h5>
                     <p class="text-muted">
-                        <i class="fas fa-<?= $user['role'] == 'admin' ? 'crown' : ($user['role'] == 'manager' ? 'user-tie' : 'user') ?> mr-1"></i>
+                        <i class="ti ti-<?= $user['role'] == 'admin' ? 'crown' : ($user['role'] == 'manager' ? 'user-check' : 'user') ?> me-1"></i>
                         <?= ucfirst($user['role']) ?>
                     </p>
                 </div>
@@ -95,7 +95,7 @@
                 <div class="mt-4">
                     <div class="info-box">
                         <span class="info-box-icon bg-info">
-                            <i class="fas fa-calendar-alt"></i>
+                            <i class="ti ti-calendar"></i>
                         </span>
                         <div class="info-box-content">
                             <span class="info-box-text">Tarikh Daftar</span>
@@ -107,7 +107,7 @@
 
                     <div class="info-box">
                         <span class="info-box-icon bg-<?= $user['is_active'] ? 'success' : 'secondary' ?>">
-                            <i class="fas fa-<?= $user['is_active'] ? 'check-circle' : 'ban' ?>"></i>
+                            <i class="ti ti-<?= $user['is_active'] ? 'check-circle' : 'ban' ?>"></i>
                         </span>
                         <div class="info-box-content">
                             <span class="info-box-text">Status Akaun</span>
@@ -126,21 +126,21 @@
             <div class="col-12">
                 <div class="btn-group">
                     <a href="<?= base_url('/admin/users/' . $user['id'] . '/edit') ?>" class="btn btn-warning">
-                        <i class="fas fa-edit mr-2"></i>Edit Pengguna
+                        <i class="ti ti-edit me-2"></i>Edit Pengguna
                     </a>
 
                     <?php if($user['id'] != session()->get('user_id')): ?>
                         <button type="button" class="btn btn-<?= $user['is_active'] ? 'secondary' : 'success' ?> toggle-status"
                                 data-id="<?= $user['id'] ?>"
                                 data-status="<?= $user['is_active'] ?>">
-                            <i class="fas fa-<?= $user['is_active'] ? 'ban' : 'check' ?> mr-2"></i>
+                            <i class="ti ti-<?= $user['is_active'] ? 'ban' : 'check' ?> me-2"></i>
                             <?= $user['is_active'] ? 'Nonaktifkan' : 'Aktifkan' ?> Akaun
                         </button>
 
                         <button type="button" class="btn btn-danger delete-user"
                                 data-id="<?= $user['id'] ?>"
                                 data-name="<?= esc($user['name']) ?>">
-                            <i class="fas fa-trash mr-2"></i>Padam Pengguna
+                            <i class="ti ti-trash me-2"></i>Padam Pengguna
                         </button>
                     <?php endif; ?>
                 </div>
@@ -164,7 +164,7 @@
                 <p class="text-danger">Tindakan ini tidak boleh dibuat asal!</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <button type="button" class="btn btn-danger" id="confirmDelete">Padam</button>
             </div>
         </div>
