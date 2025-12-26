@@ -232,59 +232,76 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-info elevation-4">
-            <!-- Brand Logo -->
-            <a href="<?= base_url('/dashboard') ?>" class="brand-link">
-                <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="Inventory Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Inventory App</span>
-            </a>
+        <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+            <!-- Brand -->
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                    <a href="<?= base_url('/dashboard') ?>">
+                        <img src="https://preview.tabler.io/static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                    </a>
+                </h1>
+            </div>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <!-- User Info -->
+            <div class="collapse navbar-collapse" id="sidebar-menu">
+                <div class="navbar-nav pt-lg-3">
+                    <div class="navbar-nav-header">
+                        <div class="navbar-user">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="avatar avatar-sm" style="background-image: url(https://preview.tabler.io/static/avatars/000m.jpg)"></span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium"><?= session()->get('name') ?? 'User' ?></div>
+                                    <div class="text-muted text-uppercase font-size-xs">
+                                        <i class="ti ti-user me-1"></i>
+                                        <?= ucfirst(session()->get('role') ?? 'user') ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="info">
-                        <a href="#" class="d-block"><?= session()->get('name') ?? 'User' ?></a>
-                        <small class="text-muted">
-                            <i class="fas fa-user mr-1"></i>
-                            <?= ucfirst(session()->get('role') ?? 'user') ?>
-                        </small>
-                    </div>
-                </div>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Navigation Menu -->
+                    <ul class="navbar-nav flex-column">
                         <!-- Dashboard -->
-                        <li class="nav-item">
-                            <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= isActive('dashboard') ?>">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Dashboard</p>
+                        <li class="navbar-nav-item">
+                            <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= isActive('dashboard') ? 'active' : '' ?>">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-home"></i>
+                                </span>
+                                <span class="nav-link-title">
+                                    Dashboard
+                                </span>
                             </a>
                         </li>
 
                         <!-- Products -->
-                        <li class="nav-header">PRODUK</li>
+                        <li class="navbar-nav-section">
+                            <div class="navbar-nav-header">PRODUK</div>
+                        </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-box"></i>
-                                <p>
+                        <li class="navbar-nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-package"></i>
+                                </span>
+                                <span class="nav-link-title">
                                     Produk
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
+                                </span>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><em>Coming Soon</em></p>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item disabled" href="#">
+                                            <em>Coming Soon</em>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
 
                         <!-- Transaction -->
@@ -329,10 +346,8 @@
                             </ul>
                         </li>
                     </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
+                </div>
             </div>
-            <!-- /.sidebar -->
         </aside>
 
         <!-- Content Wrapper. Contains page content -->

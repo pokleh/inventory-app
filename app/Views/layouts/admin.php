@@ -76,72 +76,132 @@
             color: var(--gray-700);
         }
 
-        /* Tabler-inspired Sidebar Styling */
-        .main-sidebar {
+        /* Tabler Navbar Styling */
+        .navbar-vertical {
             background-color: var(--gray-800);
             border-right: 1px solid var(--gray-700);
+            width: 16rem;
         }
 
-        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link {
-            border-radius: var(--border-radius);
-            margin: 0.125rem 0.5rem;
-            transition: var(--transition);
-            padding: 0.75rem 1rem;
+        .navbar-brand {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-700);
+        }
+
+        .navbar-brand-image {
+            height: 2rem;
+        }
+
+        .navbar-nav {
+            padding: 1rem 0;
+        }
+
+        .navbar-nav-item .nav-link {
             color: rgba(255, 255, 255, 0.8);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 0.125rem 1rem;
+            transition: var(--transition);
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link:hover {
+        .navbar-nav-item .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
             color: white;
         }
 
-        /* Menu Header Styling */
-        .nav-header {
+        .navbar-nav-item .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .navbar-nav-item .nav-link.dropdown-toggle::after {
+            margin-left: auto;
+            border: none;
+            width: 1rem;
+            height: 1rem;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.7;
+        }
+
+        .navbar-nav-item.menu-open .nav-link {
+            background-color: rgba(255, 255, 255, 0.08);
+            font-weight: 600;
+        }
+
+        /* Navbar Section Headers */
+        .navbar-nav-section .navbar-nav-header {
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            padding: 1rem 1rem 0.5rem;
+            padding: 1.5rem 1.5rem 0.75rem;
             margin-top: 1rem;
         }
 
-        /* Treeview Child Menu Styling */
-        .nav-treeview {
-            background-color: rgba(0, 0, 0, 0.1);
-            margin: 0.25rem 0.5rem;
+        /* Dropdown Menu Styling */
+        .dropdown-menu {
+            background-color: var(--gray-700);
+            border: 1px solid var(--gray-600);
             border-radius: var(--border-radius);
-            padding: 0.25rem 0;
+            box-shadow: var(--shadow-lg);
+            margin-top: 0.25rem;
+            min-width: 14rem;
         }
 
-        .nav-treeview>.nav-item>.nav-link {
-            padding-left: 2.5rem;
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
-            padding: 0.5rem 1rem 0.5rem 2.5rem;
+        .dropdown-menu .dropdown-item {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            margin: 0.125rem 0.25rem;
         }
 
-        .nav-treeview>.nav-item>.nav-link.active {
+        .dropdown-menu .dropdown-item:hover {
             background-color: rgba(255, 255, 255, 0.1);
             color: white;
-            font-weight: 600;
         }
 
-        .nav-treeview>.nav-item>.nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+        .dropdown-menu .dropdown-item.active {
+            background-color: var(--primary-color);
             color: white;
         }
 
-        /* Parent menu styling when expanded */
-        .nav-sidebar>.nav-item.menu-open>.nav-link {
-            background-color: rgba(255, 255, 255, 0.08);
-            font-weight: 600;
+        .dropdown-menu .dropdown-item.disabled {
+            color: rgba(255, 255, 255, 0.5);
+            cursor: not-allowed;
+        }
+
+        /* User Info Section */
+        .navbar-user {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--gray-700);
+            margin-bottom: 1rem;
+        }
+
+        .navbar-user .row {
+            align-items: center;
+        }
+
+        .navbar-user .avatar {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        .navbar-user .font-weight-medium {
+            font-size: 0.875rem;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .navbar-user .text-muted {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .brand-link {
@@ -521,127 +581,143 @@
                     </div>
 
                     <!-- Navigation Menu -->
-                    <ul class="navbar-nav flex-column">
+                    <ul class="navbar-nav pt-lg-3">
                         <!-- Dashboard -->
-                        <li class="nav-item">
-                            <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= isActive('dashboard') ?>">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Dashboard</p>
+                        <li class="navbar-nav-item">
+                            <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= isActive('dashboard') ? 'active' : '' ?>">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-home"></i>
+                                </span>
+                                <span class="nav-link-title">
+                                    Dashboard
+                                </span>
                             </a>
                         </li>
 
                         <!-- Master Data -->
-                        <li class="nav-header">MASTER DATA</li>
-
-                        <li class="nav-item <?= isMenuOpen('admin/categories') ?>">
-                            <a href="<?= base_url('/admin/categories') ?>" class="nav-link <?= isActive('admin/categories') ?>">
-                                <i class="nav-icon fas fa-tags"></i>
-                                <p>
-                                    Kategori
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?= base_url('/admin/categories') ?>" class="nav-link <?= uri_string() === 'admin/categories' ? 'active' : '' ?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lihat Semua</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url('/admin/categories/create') ?>" class="nav-link <?= uri_string() === 'admin/categories/create' ? 'active' : '' ?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tambah Baru</p>
-                                    </a>
-                                </li>
-                            </ul>
+                        <li class="navbar-nav-section">
+                            <div class="navbar-nav-header">MASTER DATA</div>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-box"></i>
-                                <p>
-                                    Produk
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
+                        <li class="navbar-nav-item <?= isMenuOpen('admin/categories') ? 'menu-open' : '' ?>">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-tag"></i>
+                                </span>
+                                <span class="nav-link-title">
+                                    Kategori
+                                </span>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><em>Coming Soon</em></p>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item <?= uri_string() === 'admin/categories' ? 'active' : '' ?>" href="<?= base_url('/admin/categories') ?>">
+                                            Lihat Semua
+                                        </a>
+                                        <a class="dropdown-item <?= uri_string() === 'admin/categories/create' ? 'active' : '' ?>" href="<?= base_url('/admin/categories/create') ?>">
+                                            Tambah Baru
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="navbar-nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-package"></i>
+                                </span>
+                                <span class="nav-link-title">
+                                    Produk
+                                </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item disabled" href="#">
+                                            <em>Coming Soon</em>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
 
                         <!-- Transaction -->
-                        <li class="nav-header">TRANSACTION</li>
+                        <li class="navbar-nav-section">
+                            <div class="navbar-nav-header">TRANSACTION</div>
+                        </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
-                                <p>
+                        <li class="navbar-nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-transfer"></i>
+                                </span>
+                                <span class="nav-link-title">
                                     Stock Movement
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
+                                </span>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><em>Coming Soon</em></p>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item disabled" href="#">
+                                            <em>Coming Soon</em>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
 
                         <!-- Reports -->
-                        <li class="nav-header">LAPORAN</li>
+                        <li class="navbar-nav-section">
+                            <div class="navbar-nav-header">LAPORAN</div>
+                        </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-bar"></i>
-                                <p>
+                        <li class="navbar-nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-chart-bar"></i>
+                                </span>
+                                <span class="nav-link-title">
                                     Laporan
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
+                                </span>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><em>Coming Soon</em></p>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item disabled" href="#">
+                                            <em>Coming Soon</em>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
 
                         <!-- User Management -->
-                        <li class="nav-header">PENGURUSAN PENGGUNA</li>
+                        <li class="navbar-nav-section">
+                            <div class="navbar-nav-header">PENGURUSAN PENGGUNA</div>
+                        </li>
 
-                        <li class="nav-item <?= isMenuOpen('admin/users') ?>">
-                            <a href="<?= base_url('/admin/users') ?>" class="nav-link <?= isActive('admin/users') ?>">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
+                        <li class="navbar-nav-item <?= isMenuOpen('admin/users') ? 'menu-open' : '' ?>">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-users"></i>
+                                </span>
+                                <span class="nav-link-title">
                                     Pengguna
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
+                                </span>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?= base_url('/admin/users') ?>" class="nav-link <?= uri_string() === 'admin/users' ? 'active' : '' ?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lihat Semua</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url('/admin/users/create') ?>" class="nav-link <?= uri_string() === 'admin/users/create' ? 'active' : '' ?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tambah Pengguna</p>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item <?= uri_string() === 'admin/users' ? 'active' : '' ?>" href="<?= base_url('/admin/users') ?>">
+                                            Lihat Semua
+                                        </a>
+                                        <a class="dropdown-item <?= uri_string() === 'admin/users/create' ? 'active' : '' ?>" href="<?= base_url('/admin/users/create') ?>">
+                                            Tambah Pengguna
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
