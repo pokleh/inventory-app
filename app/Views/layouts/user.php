@@ -13,15 +13,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AdminLTE -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
-    <!-- Custom Modern CSS for User -->
+    <!-- Clean Modern CSS for User -->
     <style>
         :root {
             --user-primary: #17a2b8;
-            --user-gradient: linear-gradient(135deg, #17a2b8 0%, #4dd0e1 100%);
-            --shadow-light: 0 2px 10px rgba(0,0,0,0.08);
-            --shadow-medium: 0 4px 20px rgba(0,0,0,0.12);
-            --border-radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --user-light: #4dd0e1;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --border-radius: 8px;
+            --transition: all 0.2s ease;
         }
 
         * {
@@ -30,101 +30,96 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            min-height: 100vh;
+            background-color: #f0f9ff;
+            color: #475569;
         }
 
-        /* Modern User Sidebar */
+        /* Clean User Sidebar */
         .main-sidebar {
-            background: linear-gradient(180deg, #17a2b8 0%, #4dd0e1 100%);
-            box-shadow: var(--shadow-medium);
-            border: none;
+            background-color: var(--user-primary);
+            box-shadow: var(--shadow);
         }
 
         .sidebar-dark-info .nav-sidebar>.nav-item>.nav-link {
-            border-radius: 8px;
+            border-radius: 6px;
             margin: 2px 8px;
             transition: var(--transition);
             border-left: 3px solid transparent;
         }
 
         .sidebar-dark-info .nav-sidebar>.nav-item>.nav-link.active {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-light);
-            border-left-color: #fff;
-            transform: translateX(5px);
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-left-color: white;
         }
 
         .sidebar-dark-info .nav-sidebar>.nav-item>.nav-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(3px);
-            border-left-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left-color: var(--user-light);
         }
 
         .brand-link {
-            background: var(--user-gradient) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--user-primary) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
         }
 
-        /* Modern Navbar */
+        /* Clean Navbar */
         .main-header.navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            box-shadow: var(--shadow-light);
+            background-color: white;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
         }
 
-        /* Modern Content */
+        /* Clean Content */
         .content-wrapper {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            min-height: calc(100vh - 60px);
+            background-color: #f8fafc;
         }
 
-        /* Modern Cards */
+        /* Clean Cards */
         .card {
-            border: none;
+            border: 1px solid #e2e8f0;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            background-color: white;
         }
 
         .card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
+            box-shadow: var(--shadow);
         }
 
-        /* Modern Small Boxes */
+        /* Clean Statistics Boxes */
         .small-box {
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            border: none;
-            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+            background-color: white;
         }
 
         .small-box:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
+            box-shadow: var(--shadow);
         }
 
-        /* Modern Buttons */
+        /* Clean Buttons */
         .btn {
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 500;
             transition: var(--transition);
-            border: none;
-            box-shadow: var(--shadow-light);
+            border: 1px solid transparent;
         }
 
         .btn:hover {
             transform: translateY(-1px);
-            box-shadow: var(--shadow-medium);
         }
 
         .btn-primary {
-            background: var(--user-gradient);
+            background-color: var(--user-primary);
+            border-color: var(--user-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--user-light);
+            border-color: var(--user-light);
         }
 
         /* Responsive Design */
