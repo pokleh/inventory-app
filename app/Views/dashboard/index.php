@@ -1,84 +1,207 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Inventory App</title>
-    <!-- AdminLTE CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/auth/logout">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                </li>
-            </ul>
-        </nav>
+<?php $this->extend('layouts/' . (session()->get('role') === 'admin' || session()->get('role') === 'manager' ? 'admin' : 'user')) ?>
 
-        <!-- Sidebar -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="#" class="brand-link">
-                <span class="brand-text font-weight-light">Inventory App</span>
-            </a>
-            <div class="sidebar">
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column">
-                        <li class="nav-item">
-                            <a href="/dashboard" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+<?php $this->section('content') ?>
+
+<!-- Success/Error Messages -->
+<?php if(session()->getFlashdata('success')): ?>
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="icon fas fa-check"></i> <?= session()->getFlashdata('success') ?>
+    </div>
+<?php endif; ?>
+
+<?php if(session()->getFlashdata('error')): ?>
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="icon fas fa-ban"></i> <?= session()->getFlashdata('error') ?>
+    </div>
+<?php endif; ?>
+
+<!-- Welcome Card -->
+<div class="row">
+    <div class="col-12">
+        <div class="card card-primary card-outline">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <i class="fas fa-handshake mr-2"></i>Selamat Datang di Inventory App
+                </h4>
+                <p class="card-text">Sistem pengurusan inventori yang lengkap untuk perniagaan anda.</p>
             </div>
-        </aside>
+        </div>
+    </div>
+</div>
 
-        <!-- Content -->
-        <div class="content-wrapper">
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
-                        </div>
+<!-- Statistics Cards -->
+<div class="row">
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-info stat-card">
+            <div class="inner">
+                <h3><?= $total_products ?? 0 ?></h3>
+                <p>Jumlah Produk</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-box"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Lihat Detail <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success stat-card">
+            <div class="inner">
+                <h3><?= $total_categories ?? 0 ?></h3>
+                <p>Jumlah Kategori</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-tags"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Lihat Detail <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-warning stat-card">
+            <div class="inner">
+                <h3><?= $low_stock_products ?? 0 ?></h3>
+                <p>Stok Rendah</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Lihat Detail <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger stat-card">
+            <div class="inner">
+                <h3>0</h3>
+                <p>Pergerakan Hari Ini</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Lihat Detail <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions & System Info -->
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-plus-circle mr-2"></i>Tindakan Pantas
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="#" class="btn btn-primary btn-block">
+                            <i class="fas fa-plus mr-2"></i>Tambah Produk
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="#" class="btn btn-success btn-block">
+                            <i class="fas fa-tags mr-2"></i>Tambah Kategori
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="#" class="btn btn-info btn-block">
+                            <i class="fas fa-chart-bar mr-2"></i>Lihat Laporan
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4>Selamat Datang!</h4>
-                                    <p>Dashboard dengan AdminLTE berjaya dimuatkan.</p>
-                                    <p><strong>User:</strong> <?= session()->get('name') ?? 'Unknown' ?></p>
-                                    <p><strong>Role:</strong> <?= session()->get('role') ?? 'Unknown' ?></p>
-                                </div>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-info-circle mr-2"></i>Maklumat Sistem
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="border-right">
+                            <h4 class="text-primary">v1.0</h4>
+                            <small class="text-muted">Versi</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-success">
+                            <i class="fas fa-circle"></i>
+                        </h4>
+                        <small class="text-muted">Status</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity (for admin/manager only) -->
+<?php if(session()->get('role') === 'admin' || session()->get('role') === 'manager'): ?>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-history mr-2"></i>Aktiviti Terkini
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="timeline">
+                    <div class="time-label">
+                        <span class="bg-red">Hari Ini</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-user-plus bg-blue"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fas fa-clock"></i> 12 min ago</span>
+                            <h3 class="timeline-header">Sistem authentication telah dilaksanakan</h3>
+                            <div class="timeline-body">
+                                Sistem login, register dan forgot password telah berjaya diimplementasikan.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="fas fa-database bg-green"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fas fa-clock"></i> 15 min ago</span>
+                            <h3 class="timeline-header">Database migration selesai</h3>
+                            <div class="timeline-body">
+                                Semua table database telah berjaya dibuat dengan struktur yang lengkap.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="fas fa-code bg-yellow"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fas fa-clock"></i> 30 min ago</span>
+                            <h3 class="timeline-header">AdminLTE layout diintegrasikan</h3>
+                            <div class="timeline-body">
+                                Sistem layout dengan AdminLTE telah siap untuk admin dan user.
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
+</div>
+<?php endif; ?>
 
-    <!-- AdminLTE JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-</body>
-</html>
+<?php $this->endSection() ?>
