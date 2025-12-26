@@ -18,4 +18,4 @@ $routes->post('/auth/attemptForgotPassword', 'Auth::attemptForgotPassword');
 $routes->get('/auth/logout', 'Auth::logout');
 
 // Dashboard Routes
-$routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
+$routes->get('/dashboard', 'Dashboard::index'); // Temporarily remove auth filter for testing

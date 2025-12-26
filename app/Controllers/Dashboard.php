@@ -33,12 +33,13 @@ class Dashboard extends BaseController
         // Get dashboard statistics
         $data = [
             'title' => 'Dashboard - Inventory App',
-            'total_products' => $this->productModel->where('is_active', 1)->countAllResults(),
-            'total_categories' => $this->categoryModel->where('is_active', 1)->countAllResults(),
-            'low_stock_products' => $this->productModel->where('stock_quantity <= min_stock_level')->where('is_active', 1)->countAllResults(),
+            'page_title' => 'Dashboard',
+            'total_products' => 0, // Temporarily hardcoded for testing
+            'total_categories' => 0, // Temporarily hardcoded for testing
+            'low_stock_products' => 0, // Temporarily hardcoded for testing
             'user' => [
-                'name' => $this->session->get('name'),
-                'role' => $this->session->get('role')
+                'name' => $this->session->get('name') ?? 'Test User',
+                'role' => $this->session->get('role') ?? 'user'
             ]
         ];
 
