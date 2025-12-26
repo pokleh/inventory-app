@@ -15,6 +15,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     <!-- Clean Modern CSS for User -->
     <style>
+        <?php
+        // Helper function to check active menu state
+        function isActive($patterns) {
+            $currentUri = uri_string();
+            if (is_array($patterns)) {
+                foreach ($patterns as $pattern) {
+                    if (strpos($currentUri, $pattern) !== false) {
+                        return 'active';
+                    }
+                }
+            } else {
+                if (strpos($currentUri, $patterns) !== false) {
+                    return 'active';
+                }
+            }
+            return '';
+        }
+        ?>
         :root {
             --user-primary: #17a2b8;
             --user-light: #4dd0e1;
@@ -204,7 +222,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Dashboard -->
                         <li class="nav-item">
-                            <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= uri_string() == 'dashboard' ? 'active' : '' ?>">
+                            <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= isActive('dashboard') ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>

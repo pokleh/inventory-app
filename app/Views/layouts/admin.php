@@ -15,6 +15,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     <!-- Clean Modern CSS -->
     <style>
+        <?php
+        // Helper function to check active menu state
+        $currentUri = uri_string();
+
+        function isActive($patterns) {
+            $currentUri = uri_string();
+            if (is_array($patterns)) {
+                foreach ($patterns as $pattern) {
+                    if (strpos($currentUri, $pattern) !== false) {
+                        return 'active';
+                    }
+                }
+            } else {
+                if (strpos($currentUri, $patterns) !== false) {
+                    return 'active';
+                }
+            }
+            return '';
+        }
+        ?>
         :root {
             --primary-color: #4f46e5;
             --primary-light: #6366f1;
@@ -445,7 +465,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Dashboard -->
                         <li class="nav-item">
-                            <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= uri_string() == 'dashboard' ? 'active' : '' ?>">
+                            <a href="<?= base_url('/dashboard') ?>" class="nav-link <?= isActive('dashboard') ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
@@ -464,13 +484,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url('/admin/categories') ?>" class="nav-link">
+                                    <a href="<?= base_url('/admin/categories') ?>" class="nav-link <?= isActive('admin/categories') && !isActive('admin/categories/create') ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lihat Semua</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('/admin/categories/create') ?>" class="nav-link">
+                                    <a href="<?= base_url('/admin/categories/create') ?>" class="nav-link <?= isActive('admin/categories/create') ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah Baru</p>
                                     </a>
@@ -551,13 +571,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url('/admin/users') ?>" class="nav-link">
+                                    <a href="<?= base_url('/admin/users') ?>" class="nav-link <?= isActive('admin/users') && !isActive(['admin/users/create', 'admin/users/']) ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lihat Semua</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('/admin/users/create') ?>" class="nav-link">
+                                    <a href="<?= base_url('/admin/users/create') ?>" class="nav-link <?= isActive('admin/users/create') ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah Pengguna</p>
                                     </a>
