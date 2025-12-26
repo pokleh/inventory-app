@@ -80,6 +80,40 @@
             border-left-color: var(--user-light);
         }
 
+        /* Treeview Child Menu Styling */
+        .sidebar-dark-info .nav-treeview>.nav-item>.nav-link {
+            padding-left: 25px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .sidebar-dark-info .nav-treeview>.nav-item>.nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-left: 3px solid var(--user-primary-light);
+        }
+
+        .sidebar-dark-info .nav-treeview>.nav-item>.nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Parent menu styling when expanded */
+        .sidebar-dark-info .nav-sidebar>.nav-item.menu-open>.nav-link {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-left-color: var(--user-primary-light);
+            font-weight: 600;
+        }
+
+        /* Better spacing for treeview */
+        .nav-treeview {
+            padding-left: 0;
+        }
+
+        .nav-treeview .nav-item {
+            margin-left: 0;
+        }
+
         .brand-link {
             background-color: var(--user-primary) !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);

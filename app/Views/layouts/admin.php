@@ -98,6 +98,40 @@
             border-left-color: var(--primary-light);
         }
 
+        /* Treeview Child Menu Styling */
+        .sidebar-dark-primary .nav-treeview>.nav-item>.nav-link {
+            padding-left: 25px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .sidebar-dark-primary .nav-treeview>.nav-item>.nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-left: 3px solid var(--primary-light);
+        }
+
+        .sidebar-dark-primary .nav-treeview>.nav-item>.nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Parent menu styling when expanded */
+        .sidebar-dark-primary .nav-sidebar>.nav-item.menu-open>.nav-link {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-left-color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        /* Better spacing for treeview */
+        .nav-treeview {
+            padding-left: 0;
+        }
+
+        .nav-treeview .nav-item {
+            margin-left: 0;
+        }
+
         .brand-link {
             background-color: var(--gray-900) !important;
             border-bottom: 1px solid var(--gray-700);
@@ -488,13 +522,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url('/admin/categories') ?>" class="nav-link <?= isActive('admin/categories') && !isActive('admin/categories/create') ? 'active' : '' ?>">
+                                    <a href="<?= base_url('/admin/categories') ?>" class="nav-link <?= uri_string() === 'admin/categories' ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lihat Semua</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('/admin/categories/create') ?>" class="nav-link <?= isActive('admin/categories/create') ? 'active' : '' ?>">
+                                    <a href="<?= base_url('/admin/categories/create') ?>" class="nav-link <?= uri_string() === 'admin/categories/create' ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah Baru</p>
                                     </a>
@@ -575,13 +609,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url('/admin/users') ?>" class="nav-link <?= isActive('admin/users') && !isActive(['admin/users/create', 'admin/users/']) ? 'active' : '' ?>">
+                                    <a href="<?= base_url('/admin/users') ?>" class="nav-link <?= uri_string() === 'admin/users' ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lihat Semua</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('/admin/users/create') ?>" class="nav-link <?= isActive('admin/users/create') ? 'active' : '' ?>">
+                                    <a href="<?= base_url('/admin/users/create') ?>" class="nav-link <?= uri_string() === 'admin/users/create' ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah Pengguna</p>
                                     </a>
